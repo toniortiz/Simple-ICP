@@ -1,18 +1,18 @@
-#include "Icp.h"
-#include <pcl/registration/icp.h>
+#include "Gicp.h"
+#include <pcl/registration/gicp.h>
 
 using namespace std;
 
-Icp::Icp()
+Gicp::Gicp()
     : AbstractIcp()
 {
-    _reg = boost::make_shared<pcl::IterativeClosestPoint<PointT, PointT>>();
+    _reg = boost::make_shared<pcl::GeneralizedIterativeClosestPoint<PointT, PointT>>();
     _reg->setMaximumIterations(_iters);
     _reg->setMaxCorrespondenceDistance(_maxDist);
     _reg->setTransformationEpsilon(_epsilon);
 }
 
-AbstractIcp& Icp::align(AbstractIcp::PointCloudT& src, AbstractIcp::PointCloudT& tgt)
+AbstractIcp& Gicp::align(AbstractIcp::PointCloudT& src, AbstractIcp::PointCloudT& tgt)
 {
     _reg->setInputSource(boost::make_shared<PointCloudT>(src));
     _reg->setInputTarget(boost::make_shared<PointCloudT>(tgt));

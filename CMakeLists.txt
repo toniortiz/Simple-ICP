@@ -24,8 +24,12 @@ include_directories(${PROJECT_SOURCE_DIR})
 
 add_library(${PROJECT_NAME} SHARED
     Viewer/Viewer.cpp
+
     Utils/Random.cpp
+
     Algorithms/Icp.cpp
+    Algorithms/Gicp.cpp
+    Algorithms/AbstractIcp.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}

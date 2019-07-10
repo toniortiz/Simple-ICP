@@ -1,13 +1,12 @@
-#ifndef ICP_H
-#define ICP_H
+#ifndef GICP_H
+#define GICP_H
 
 #include "AbstractIcp.h"
 
-class Icp : public AbstractIcp {
+class Gicp : public AbstractIcp {
 public:
-    Icp();
+    Gicp();
 
     AbstractIcp& align(PointCloudT& src, PointCloudT& tgt) override;
 };
-
-#endif // ICP_H
+#endif // GICP_H

@@ -1,15 +1,15 @@
 #ifndef PCDVIEWER_H
 #define PCDVIEWER_H
 
-#include "Algorithms/Icp.h"
+#include "Algorithms/AbstractIcp.h"
 #include <mutex>
 #include <pcl/visualization/pcl_visualizer.h>
 #include <thread>
 
 class Viewer {
 public:
-    typedef Icp::PointT PointT;
-    typedef Icp::PointCloudT PointCloudT;
+    typedef AbstractIcp::PointT PointT;
+    typedef AbstractIcp::PointCloudT PointCloudT;
 
 public:
     Viewer(const std::string& name);
