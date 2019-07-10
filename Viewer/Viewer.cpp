@@ -13,7 +13,7 @@ Viewer::Viewer(const string& name)
 {
 }
 
-Viewer::PointCloudT Viewer::open(const string& filename)
+Viewer::PointCloudT Viewer::open(const string& filename, const bool& render)
 {
     PointCloudT::Ptr cloud = boost::make_shared<PointCloudT>();
 
@@ -23,12 +23,15 @@ Viewer::PointCloudT Viewer::open(const string& filename)
     else if (ext == "ply")
         pcl::io::loadPLYFile(filename, *cloud);
 
-    unique_lock<mutex> lock(_mutexViewer);
-    _colors.push_back(boost::make_shared<pcl::visualization::PointCloudColorHandlerCustom<PointT>>(cloud,
-        Random::randomInt(0, 255), Random::randomInt(0, 255), Random::randomInt(0, 255)));
-    _clouds.push_back(cloud);
-    _cloudNames.push_back(filename);
-    _inserted.push_back(false);
+    if (render) {
+        unique_lock<mutex> lock(_mutexViewer);
+
+        _colors.push_back(boost::make_shared<pcl::visualization::PointCloudColorHandlerCustom<PointT>>(cloud,
+            Random::randomInt(0, 255), Random::randomInt(0, 255), Random::randomInt(0, 255)));
+        _clouds.push_back(cloud);
+        _cloudNames.push_back(filename);
+        _inserted.push_back(false);
+    }
 
     return *cloud;
 }

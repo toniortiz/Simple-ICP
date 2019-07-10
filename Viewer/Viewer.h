@@ -15,7 +15,7 @@ public:
     Viewer(const std::string& name);
 
     // Open a PointCloud from file and returns a copy to it
-    PointCloudT open(const std::string& filename);
+    PointCloudT open(const std::string& filename, const bool& render = true);
 
     void add(const PointCloudT& cloud, const std::string& name);
 

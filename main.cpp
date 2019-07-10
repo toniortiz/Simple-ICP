@@ -15,19 +15,20 @@ int main()
 {
     typedef Icp::PointCloudT PointCloudT;
 
-    Viewer vt("Viewer");
-    PointCloudT source = vt.open("/home/antonio/Documents/M.C.C/Tesis/Sample code/Varios/robust_point_cloud_registration-master/samples/bunny/source.pcd");
-    PointCloudT target = vt.open("/home/antonio/Documents/M.C.C/Tesis/Sample code/Varios/robust_point_cloud_registration-master/samples/bunny/target.pcd");
-    vt.setPointSize(2).start();
+    Viewer vc("Viewer");
+    vc.setPointSize(2).start();
+    PointCloudT source = vc.open("../Data/bunny/source.pcd");
+    PointCloudT target = vc.open("../Data/bunny/target.pcd");
 
     Icp icp;
     auto [status, score, T, aligned] = icp.setIterations(30).setMaxDist(0.3).setEpsilon(1e-9).align(source, target).getResult();
 
     if (status) {
-        vt.add(aligned, "transformed");
+        vc.add(aligned, "aligned");
+        cout << score << endl;
     }
 
-    vt.join();
+    vc.join();
 
     return 0;
 }
