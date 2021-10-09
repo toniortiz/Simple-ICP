@@ -40,7 +40,8 @@ int main()
 
     Icp icp;
     auto [status, score, T, aligned] = icp.setIterations(100).setMaxDist(0.3).setEpsilon(1e-9).align(source, target).getResult();
-
+    
+    // any change
     if (status) {
         vc.add(aligned, "aligned");
         cout << "\nEstimated motion" << endl;
