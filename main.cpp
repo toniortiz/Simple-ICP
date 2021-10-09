@@ -6,6 +6,10 @@
 
 using namespace std;
 
+double divide(double a, double b){
+    return a/b;
+}
+
 /*
  * 1 - source cloud
  * 2 - target cloud
